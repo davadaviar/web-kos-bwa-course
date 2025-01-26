@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone_number');
             $table->enum('payment_method', ['down_payment', 'full_payment'])->nullable();
-            $table->string('payment_status');
+            $table->string('payment_status')->nullable();
             $table->date('start_date');
             $table->integer('duration');
-            $table->integer('total_amount');
-            $table->date('transaction_date');
+            $table->integer('total_amount')->nullable();
+            $table->date('transaction_date')->nullable();
             $table->string('status');
             $table->softDeletes();
             $table->timestamps();
