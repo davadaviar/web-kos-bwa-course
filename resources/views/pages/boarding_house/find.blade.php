@@ -25,11 +25,13 @@
                         <img src="assets/images/icons/location.svg"
                             class="absolute w-5 h-5 flex shrink-0 transform -translate-y-1/2 top-1/2 left-5"
                             alt="icon">
-                        <select name="" id="" class="appearance-none outline-none w-full bg-white pl-8">
+                        <select name="city" id="city" class="appearance-none outline-none w-full bg-white pl-8">
                             <option value="" hidden>Select city</option>
-                            <option value="1">Jakarta</option>
-                            <option value="2">Bogor</option>
-                            <option value="3">Bekasi</option>
+
+                            @foreach ($cities as $city)
+                            <option value="{{ $city->slug }}">{{ $city->name }}</option>
+                            @endforeach
+                            
                         </select>
                         <img src="assets/images/icons/arrow-down.svg" class="w-5 h-5" alt="icon">
                     </label>
@@ -41,11 +43,13 @@
                         <img src="assets/images/icons/location.svg"
                             class="absolute w-5 h-5 flex shrink-0 transform -translate-y-1/2 top-1/2 left-5"
                             alt="icon">
-                        <select name="" id="" class="appearance-none outline-none w-full bg-white pl-8">
+                        <select name="category" id="category" class="appearance-none outline-none w-full bg-white pl-8">
                             <option value="" hidden>Select category</option>
-                            <option value="1">Villas</option>
-                            <option value="2">Apartment</option>
-                            <option value="3">House</option>
+
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                            @endforeach
+
                         </select>
                         <img src="assets/images/icons/arrow-down.svg" class="w-5 h-5" alt="icon">
                     </label>
@@ -59,7 +63,8 @@
 
     @include('includes.bottom_navbar')
 
+    @endsection
+
     @push('after-scripts')
         <script src="{{ asset('assets/js/find-kos.js') }}"></script>
     @endpush
-@endsection
