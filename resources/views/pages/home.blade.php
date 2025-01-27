@@ -114,7 +114,7 @@
         <div class="grid grid-cols-2 gap-4">
 
             @foreach ($cities as $city)
-            <a href="cities.html" class="card">
+            <a href="{{ route('city.show', $city->slug) }}" class="card">
                 <div
                     class="flex items-center rounded-[22px] p-[10px] gap-3 bg-white border border-white overflow-hidden hover:border-[#91BF77] transition-all duration-300">
                     <div
