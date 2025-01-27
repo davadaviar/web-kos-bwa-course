@@ -10,12 +10,12 @@
     <div id="TopNavAbsolute" class="absolute top-[60px] flex items-center justify-between w-full px-5 z-10">
         <a href="{{ route('home') }}"
             class="w-12 h-12 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm">
-            <img src="{{ asset ('assets/images/icons/arrow-left-transparent.svg') }}" class="w-8 h-8" alt="icon">
+            <img src="{{ asset('assets/images/icons/arrow-left-transparent.svg') }}" class="w-8 h-8" alt="icon">
         </a>
         <p class="font-semibold text-white">Details</p>
         <button
             class="w-12 h-12 flex items-center justify-center shrink-0 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm">
-            <img src="{{ asset ('assets/images/icons/like.svg') }}" class="w-[26px] h-[26px]" alt="">
+            <img src="{{ asset('assets/images/icons/like.svg') }}" class="w-[26px] h-[26px]" alt="">
         </button>
     </div>
     {{-- topnav --}}
@@ -45,26 +45,26 @@
             <h1 class="font-bold text-[22px] leading-[33px]">{{ $boardingHouse->name }}</h1>
             <div
                 class="flex flex-col items-center text-center shrink-0 rounded-[22px] border border-[#F1F2F6] p-[10px_20px] gap-2 bg-white">
-                <img src="{{ asset ('assets/images/icons/star.svg') }}" class="w-6 h-6" alt="icon">
+                <img src="{{ asset('assets/images/icons/star.svg') }}" class="w-6 h-6" alt="icon">
                 <p class="font-bold text-sm">4/5</p>
             </div>
         </div>
         <hr class="border-[#F1F2F6] mx-5">
         <div id="Features" class="grid grid-cols-2 gap-x-[10px] gap-y-4 px-5">
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset ('assets/images/icons/location.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/location.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
                 <p class="text-ngekos-grey">{{ $boardingHouse->city->name }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset ('assets/images/icons/3dcube.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/3dcube.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
                 <p class="text-ngekos-grey">In {{ $boardingHouse->category->name }}</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset ('assets/images/icons/profile-2user.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/profile-2user.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
                 <p class="text-ngekos-grey">4 People</p>
             </div>
             <div class="flex items-center gap-[6px]">
-                <img src="{{ asset ('assets/images/icons/shield-tick.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
+                <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
                 <p class="text-ngekos-grey">Privacy 100%</p>
             </div>
         </div>
@@ -143,7 +143,7 @@
                         <div class="flex">
 
                             @for ($i = 0; $i < $testimonial->rating; $i++)
-                            <img src="{{ asset ('assets/images/icons/Star 1.svg') }}" class="w-[22px] h-[22px] flex shrink-0"
+                            <img src="{{ asset('assets/images/icons/Star 1.svg') }}" class="w-[22px] h-[22px] flex shrink-0"
                                 alt="">
                             @endfor
                             
@@ -172,7 +172,7 @@
                     <br>
                     <span class="text-sm font-normal">/Month</span>
                 </p>
-                <a href="room-available.html"
+                <a href="{{ route('kos.room', $boardingHouse->slug) }}"
                     class="flex shrink-0 rounded-full py-[14px] px-5 bg-ngekos-orange font-bold text-white">Book
                     Now</a>
             </div>
@@ -183,5 +183,5 @@
 
 @push('after-scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{{ asset ('assets/js/details.js') }}"></script>
+    <script src="{{ asset('assets/js/details.js') }}"></script>
 @endpush
