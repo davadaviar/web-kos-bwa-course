@@ -24,7 +24,7 @@ for (let i = today.getDate(); i <= lastDayOfMonth; i++) {
     datesElement.innerHTML += `
         <div class="swiper-slide !w-fit py-[2px]">
             <label class="relative flex flex-col items-center justify-center w-fit rounded-3xl p-[14px_20px] gap-3 bg-white border border-white hover:border-[#91BF77] has-[:checked]:ring-2 has-[:checked]:ring-[#91BF77] transition-all duration-300">
-                <img src="assets/images/icons/calendar.svg" class="w-8 h-8" alt="icon">
+                <img src="${assetBaseUrl}assets/images/icons/calendar.svg" class="w-8 h-8" alt="icon">
                 <p class="font-semibold text-nowrap">${date.getDate()} ${month}</p>
                 <input type="radio" name="start_date" class="absolute top-1/2 left-1/2 -z-10 opacity-0" value="${realDate}" required>
             </label>
@@ -35,7 +35,6 @@ const minusButton = document.getElementById('Minus');
 const plusButton = document.getElementById('Plus');
 const durationInput = document.getElementById('Duration');
 const priceElement = document.getElementById('price');
-const defaultPrice = 793444;
 const maxDuration = 999; // Maximum allowed value
 
 function updatePrice() {

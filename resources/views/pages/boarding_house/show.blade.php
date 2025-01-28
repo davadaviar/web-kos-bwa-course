@@ -172,7 +172,7 @@
                     <br>
                     <span class="text-sm font-normal">/Month</span>
                 </p>
-                <a href="{{ route('kos.room', $boardingHouse->slug) }}"
+                <a href="{{ route('kos.rooms', $boardingHouse->slug) }}"
                     class="flex shrink-0 rounded-full py-[14px] px-5 bg-ngekos-orange font-bold text-white">Book
                     Now</a>
             </div>
