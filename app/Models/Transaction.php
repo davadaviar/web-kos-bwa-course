@@ -16,6 +16,7 @@ class Transaction extends Model
         'code',
         'boarding_house_id',
         'room_id',
+        'name',
         'email',
         'phone_number',
         'payment_method',
