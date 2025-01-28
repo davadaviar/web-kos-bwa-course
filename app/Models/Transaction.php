@@ -28,6 +28,10 @@ class Transaction extends Model
 
     ];
 
+    protected $cast = [
+        'start_date' => 'date'
+    ];
+
     public function boardingHouse()
     {
         return $this->belongsTo(BoardingHouse::class);

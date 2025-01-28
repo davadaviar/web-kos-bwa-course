@@ -25,10 +25,11 @@ class CustomerInfoStoreRequest extends FormRequest
             
             'name' => 'string|required',
             'email' => 'email|required',
-            'phone' => 'string|required',
+            'phone_number' => 'string|required',
             'start_date' => 'required',
             'duration' => 'required',
 
         ];
+
     }
 }
