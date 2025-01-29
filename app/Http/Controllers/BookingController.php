@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerInfoStoreRequest;
-use App\Http\Requests\TransactionStoreRequest;
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Interfaces\TransactionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -69,7 +68,28 @@ class BookingController extends Controller
 
         $transaction = $this->transactionRepository->storeTransactionBooking($geDataSession);
 
-        dd($transaction);
+        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+        \Midtrans\Config::$isProduction = config('midtrans.isProduction');
+        \Midtrans\Config::$isSanitized = config('midtrans.isSanitized');
+        \Midtrans\Config::$is3ds = config('midtrans.is3ds');
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $transaction->code,
+                'gross_amount' => intval($transaction->total_amount)
+            ],
+
+            'customer_details' => [
+                'first_name' => $transaction->name,
+                'email' => $transaction->email,
+                'phone_number' => $transaction->phone_number
+            ],
+
+        ];
+
+        $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+
+        return redirect($paymentUrl);
 
     }
 
