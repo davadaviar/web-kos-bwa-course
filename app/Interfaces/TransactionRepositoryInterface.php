@@ -9,5 +9,7 @@ interface TransactionRepositoryInterface
     public function storeTransactionDataToSession($data);
 
     public function storeTransactionBooking($data);
+
+    public function getTransactionBookingCode($code);
     
 }

@@ -30,6 +30,8 @@ class BoardingHouseController extends Controller
     {
         $boardingHouse = $this->boardingHouseRepository->getBoardingHouseBySlug($slug);
 
+        // dd($boardingHouse);
+
         return view('pages.boarding_house.show', compact('boardingHouse'));
     }
 

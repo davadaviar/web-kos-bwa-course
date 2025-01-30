@@ -40,6 +40,11 @@ class TransactionRepository implements TransactionRepositoryInterface
 
     }
 
+    public function getTransactionBookingCode($code)
+    {
+        return Transaction::where('code', $code)->first();
+    }
+
     private function prepareTransactionData($data, $room)
     {
         $data['code'] = $this->generateTransactionCode();
