@@ -5,17 +5,22 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MidtransController extends Controller
 {
     
     public function callback(Request $request)
     {
+
+        Log::info('Midtrans Callback Received:', $request->all());
+
         $serverKey = config('midtrans.serverKey');
-        $hashedKey = hash('sha512', $request->order_id . $request->status . $request->gross_amount . $serverKey );
+        $hashedKey = hash('sha512', $request->order_id . $request->status_code . $request->gross_amount . $serverKey );
 
         if($hashedKey !== $request->signature_key)
         {
+            Log::error('Invalid Signature Key for Order: ' . $request->order_id);
             return response()->json(['message' => 'Invalid signature key'], 403);
         }
 
@@ -25,6 +30,7 @@ class MidtransController extends Controller
 
         if(!$transaction)
         {
+            Log::error("Transaction not found for order_id: " . $orderId);
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
@@ -72,6 +78,8 @@ class MidtransController extends Controller
 
         }
 
+        
+        Log::info("Transaction Updated: Order ID - {$orderId}, Status - {$transactionStatus}");
         return response()->json(['message' => 'Callback received successfully']);
 
     }

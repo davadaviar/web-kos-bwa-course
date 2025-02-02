@@ -56,12 +56,23 @@
             <p class="font-semibold">Your Booking ID</p>
             <div class="flex items-center rounded-full p-[14px_20px] gap-3 bg-[#F5F6F8]">
                 <img src="assets/images/icons/note-favorite-green.svg" class="w-5 h-5 flex shrink-0" alt="icon">
-                <p class="font-semibold">NGKBWA1996</p>
+                <p class="font-semibold">{{ $transaction->code }}</p>
             </div>
         </div>
         <div class="flex flex-col gap-[14px]">
             <a href="{{ route('home') }}" class="w-full rounded-full p-[14px_20px] text-center font-bold text-white bg-[#FF801A]">Explore Other Kos</a>
-            <a href="booking-details.html" class="w-full rounded-full p-[14px_20px] text-center font-bold text-white bg-[#070707]">View My Booking</a>
+
+            <form action="{{ route('check.booking.store') }}" method="POST">
+
+                @csrf
+                <input type="hidden" name="code" value="{{ $transaction->code }}">
+                <input type="hidden" name="email" value="{{ $transaction->email }}">
+                <input type="hidden" name="phone_number" value="{{ $transaction->phone_number }}">
+
+                <button type="submit" class="w-full rounded-full p-[14px_20px] text-center font-bold text-[#FF801A] bg-[#070707]">
+                    View My Booking
+                </button>
+            </form>
         </div>
     </div>
     {{-- content --}}

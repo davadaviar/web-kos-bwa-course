@@ -26,3 +26,4 @@ Route::post('/kos/booking/{slug}/payment', [BookingController::class, 'bookingPa
 Route::get('/booking-success', [BookingController::class, 'bookingSuccess'])->name('booking.success');
 
 Route::get('/check-booking', [BookingController::class, 'checkBooking'])->name('check.booking');
+Route::post('/check-booking', [BookingController::class, 'checkBookingDetail'])->name('check.booking.store');

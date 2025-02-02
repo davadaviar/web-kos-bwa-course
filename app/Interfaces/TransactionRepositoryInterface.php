@@ -11,5 +11,7 @@ interface TransactionRepositoryInterface
     public function storeTransactionBooking($data);
 
     public function getTransactionBookingCode($code);
+
+    public function getTransacationByCodeEmailPhone($code, $email, $phone);
     
 }

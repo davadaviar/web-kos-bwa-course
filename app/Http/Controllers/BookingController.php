@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckBookingStoreRequest;
 use App\Http\Requests\CustomerInfoStoreRequest;
 use App\Interfaces\BoardingHouseRepositoryInterface;
 use App\Interfaces\TransactionRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookingController extends Controller
 {
@@ -107,6 +109,18 @@ class BookingController extends Controller
 
     public function checkBooking()
     {
-        return view('pages.booking');
+        return view('pages.booking.check');
     }
+
+    public function checkBookingDetail(CheckBookingStoreRequest $request)
+    {
+        $transaction = $this->transactionRepository->getTransacationByCodeEmailPhone($request->code, $request->email, $request->phone_number);
+
+        if(!$transaction) {
+            return redirect()->back()->with('error', 'Transaction not found');
+        }
+
+        return view('pages.booking.detail', compact('transaction'));
+    }
+
 }
