@@ -61,7 +61,11 @@
             </div>
             <div class="flex items-center gap-[6px]">
                 <img src="{{ asset('assets/images/icons/profile-2user.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">
-                <p class="text-ngekos-grey">4 People</p>
+                
+                @foreach ($boardingHouse->rooms as $room)
+                <p class="text-ngekos-grey">{{ $room->capacity }} People</p>
+                @endforeach
+
             </div>
             <div class="flex items-center gap-[6px]">
                 <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-[26px] h-[26px] flex shrink-0" alt="icon">

@@ -49,7 +49,11 @@
                     </div>
                     <div class="flex items-center gap-[6px]">
                         <img src="{{ asset ('assets/images/icons/profile-2user.svg') }}" class="w-5 h-5 flex shrink-0" alt="icon">
-                        <p class="text-sm text-ngekos-grey">4 People</p>
+                        
+                        @foreach ($boardingHouse->rooms as $room)
+                            <p class="text-sm text-ngekos-grey">{{ $room->capacity }} People</p>    
+                        @endforeach
+
                     </div>
                     <hr class="border-[#F1F2F6]">
                     <p class="font-semibold text-lg text-ngekos-orange">IDR {{ number_format($boardingHouse->price, 0, ',', '.') }}<span
