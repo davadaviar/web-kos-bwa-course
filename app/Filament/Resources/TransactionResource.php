@@ -55,11 +55,7 @@ class TransactionResource extends Resource
                 ])
                 ->required(),
 
-                Forms\Components\Select::make('payment_status')
-                ->options([
-                    'pending' => 'Pending',
-                    'paid' => 'Paid',
-                ])
+                Forms\Components\TextInput::make('payment_status')
                 ->required(),
 
                 Forms\Components\DatePicker::make('start_date')

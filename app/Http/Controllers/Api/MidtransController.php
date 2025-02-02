@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Twilio\Rest\Client;
 
 class MidtransController extends Controller
 {
@@ -34,6 +35,17 @@ class MidtransController extends Controller
             return response()->json(['message' => 'Transaction not found'], 404);
         }
 
+        $twilio = new Client(env('TWILIO_ACCOUNT_SID'), env('TWILIO_AUTH_TOKEN'));
+
+        $message = 
+            "Hello " . $transaction->name . "!" . PHP_EOL . PHP_EOL .
+            "Your payment has been successfully processed with transaction code " . $transaction->code . "." . PHP_EOL . PHP_EOL .
+            "Total payment: " . $transaction->total_amount . PHP_EOL . PHP_EOL .
+            "Address: " . $transaction->boardingHouse->address . PHP_EOL . PHP_EOL .
+            "Start date: " . date('d-m-Y', strtotime($transaction->start_date)) . PHP_EOL . PHP_EOL .
+            "Thank you for using our service.";
+
+
         switch ($transactionStatus) {
             case 'capture':
                 if($request->payment_type == 'bank_transfer')
@@ -54,6 +66,23 @@ class MidtransController extends Controller
 
             case 'settlement':
                 $transaction->update(['payment_status' => 'success']);
+
+                try {
+
+                    $twilio->messages->create(
+                        "whatsapp:+" . $transaction->phone_number,
+                        array(
+                            "from" => env('TWILIO_PHONE_NUMBER'),
+                            "body" => $message
+                        )
+                    );
+
+                } catch (\Throwable $e) {
+                    
+                    logger("Twilio Error: " . $e->getMessage());
+                    
+                }
+
                 break;
 
             case 'pending':
